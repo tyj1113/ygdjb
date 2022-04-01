@@ -241,8 +241,9 @@
             <template v-slot="scope">
               <el-form-item
                   v-if="!scope.row.add"
-                  :prop="'contactsTable.' + scope.$index + '.input'"
+                  :prop="'contactsTable.' + scope.$index + '.' + item.prop"
                   :style="{marginBottom:0}"
+                  :rules="rules[item.prop]"
               >
                 <el-input :style="{width:'100%'}" v-model="scope.row[item.prop]"></el-input>
               </el-form-item>
@@ -567,9 +568,9 @@ const rules = reactive({
   interviewJob:[
     {required: true, message: '请输入面试岗位', trigger: 'blur'},
   ],
-  // contactsTableName: [
-  //   {required: true, message: 'name', trigger: 'change'},
-  // ]
+  relationship: [
+    {required: true, message: 'name', trigger: 'blur'},
+  ]
 })
 const startMarriageOptions = reactive([
   {
@@ -782,7 +783,7 @@ const getImg=()=>{
 }
 .left, .right {
   min-width: 740px;
-  padding: 10px 0;
+  padding: 10px 0 0 0;
   .title {
     margin-bottom: 20px;
     display: flex;
@@ -810,7 +811,7 @@ const getImg=()=>{
 }
 .right{
   width: 65%;
-  height: 100%;
+  //height: 100%;
   overflow: auto;
   padding-left:50px;
   padding-right:20px;
@@ -822,6 +823,52 @@ const getImg=()=>{
     color:#ccc;
     font-size: 14px;
   }
+  &::-webkit-scrollbar {
+    // 滚动条的背景
+    width: 16px;
+    background: #fff;
+    height: 14px;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    width: 20px;
+    border: 5px solid transparent;
+  }
+
+  //&::-webkit-scrollbar-track {
+  //  box-shadow: 1px 1px 5px #191a37 inset;
+  //}
+
+  &::-webkit-scrollbar-thumb {
+    //滚动条的滑块样式修改
+    width: 20px;
+    min-height: 20px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px #cee5ee inset;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: #fff;
+  }
+  //&::-webkit-scrollbar {
+  //  /*滚动条整体样式*/
+  //  width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+  //  height: 1px;
+  //}
+  //&::-webkit-scrollbar-thumb {
+  //  /*滚动条里面小方块*/
+  //  border-radius: 10px;
+  //  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  //  background   : deepskyblue;
+  //}
+  //&::-webkit-scrollbar-track {
+  //  /*滚动条里面轨道*/
+  //  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  //  border-radius: 10px;
+  //  background   : #fff;
+  //}
 }
 .left{
   width: 35%;
@@ -833,4 +880,5 @@ const getImg=()=>{
     margin-bottom: 10px;
   }
 }
+
 </style>
