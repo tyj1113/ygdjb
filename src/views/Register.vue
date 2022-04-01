@@ -15,13 +15,26 @@
           </div>
         </div>
 
-        <el-row :gutter="20">
+        <el-row :gutter="20" style="margin-bottom: 30px">
           <el-col :span="7">
-            <div>photo</div>
-            <div>
-              <el-button>上传</el-button>
-              <el-button>更换</el-button>
-            </div>
+            <el-row justify="center">
+              <el-col :span="24" align="center">
+                <div>
+                  <div class="photo">
+                    <img :src="avatarSrc" alt="" style="width: 100%;">
+                  </div>
+                  <div>
+                    <el-button @click="uploadAvatar">上传</el-button>
+                    <el-button @click="uploadAvatar">更换</el-button>
+                    <input type="file" accept="image/*" @change="getImg($event)" style="display:none" value="" id="img_z"
+                    ref="avatar"
+                    />
+                  </div>
+                </div>
+
+              </el-col>
+            </el-row>
+
           </el-col>
           <el-col :span="14">
             <h2>一、基本信息</h2>
@@ -34,8 +47,8 @@
               <el-col :span="12">
                 <el-form-item label="性别" prop="sex">
                   <el-radio-group v-model="ruleForm.sex">
-                    <el-radio label="男"/>
-                    <el-radio label="女"/>
+                    <el-radio :label="1">男</el-radio>
+                    <el-radio :label="2">女</el-radio>
                   </el-radio-group>
                 </el-form-item>
               </el-col>
@@ -44,7 +57,7 @@
               <el-col :span="12">
                 <el-form-item label="出生年月" prop="birthTime">
                   <el-date-picker
-                      v-model="ruleForm.date1"
+                      v-model="ruleForm.birthTime"
                       type="date"
                       placeholder="选择出生年月"
                       style="width: 100%"
@@ -52,7 +65,7 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="民族" prop="typeEthnic">
+                <el-form-item label="民族" >
                   <el-input v-model="ruleForm.typeEthnic"></el-input>
                 </el-form-item>
               </el-col>
@@ -61,61 +74,66 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
-            <el-form-item label="政治面貌" prop="region">
-              <el-select v-model="ruleForm.region" placeholder="请选择政治面貌">
+            <el-form-item label="政治面貌" >
+              <el-select v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
                 <el-option v-for="item in typePoliticalOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="身份证号" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="身份证号" prop="identityNo">
+              <el-input v-model="ruleForm.identityNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="社保号" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="7">
-            <el-form-item label="手机" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="7">
-            <el-form-item label="电子邮件" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="7">
-            <el-form-item label="固定电话" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="社保号" prop="socialNo">
+              <el-input v-model="ruleForm.socialNo"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
-            <el-form-item label="开户行名称" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="手机" prop="phone">
+              <el-input v-model="ruleForm.phone"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="7">
+            <el-form-item label="电子邮件" prop="email">
+              <el-input v-model="ruleForm.email"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="7">
+            <el-form-item label="固定电话" prop="tel">
+              <el-input v-model="ruleForm.tel"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="7">
+            <el-form-item label="开户行名称" prop="bankname">
+              <el-input v-model="ruleForm.bankname"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="14">
-            <el-form-item label="银行卡号" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item  prop="account">
+              <el-input v-model="ruleForm.account">
+<!--                <template #prepend>-->
+<!--                  <span>银行卡号</span>-->
+<!--                  <span style="color:red">(非杭州联合开发银行不填)</span>-->
+<!--                </template>-->
+              </el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="14">
-            <el-form-item label="联系地址" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="联系地址" prop="address">
+              <el-input v-model="ruleForm.address"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="婚姻" prop="birthTime">
-              <el-select v-model="ruleForm.region" placeholder="请选择婚姻状况">
+            <el-form-item label="婚姻" prop="stateMarriage">
+              <el-select v-model="ruleForm.stateMarriage" placeholder="请选择婚姻状况" >
                 <el-option v-for="item in startMarriageOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
@@ -123,25 +141,25 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="14">
-            <el-form-item label="籍贯" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="籍贯" prop="nativePlace">
+              <el-input v-model="ruleForm.nativePlace"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="邮编" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="邮编" prop="postcode">
+              <el-input v-model="ruleForm.postcode"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="14">
-            <el-form-item label="户口" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="户口" prop="identityAddress ">
+              <el-input v-model="ruleForm.identityAddress "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="血型" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="血型" prop="typeBlood ">
+              <el-input v-model="ruleForm.typeBlood "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -150,59 +168,59 @@
         <h2>二、学业与技能信息</h2>
         <el-row :gutter="20">
           <el-col :span="6">
-            <el-form-item label="毕业院校" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="毕业院校" prop="graduatedSchool">
+              <el-input v-model="ruleForm.graduatedSchool"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="学历" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="学历" prop="education">
+              <el-input v-model="ruleForm.education"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="专业" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="专业" prop="profession">
+              <el-input v-model="ruleForm.profession"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="职称" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="职称" prop="jobTitle ">
+              <el-input v-model="ruleForm.jobTitle "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="6">
-            <el-form-item label="外语水平" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="外语水平" prop="foreignLanguageLevel ">
+              <el-input v-model="ruleForm.foreignLanguageLevel "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="计算机水平" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="计算机水平" prop="computerSkillLevel">
+              <el-input v-model="ruleForm.computerSkillLevel"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="特长" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="特长" prop="specialty">
+              <el-input v-model="ruleForm.specialty"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <h2>三、面试信息</h2>
         <el-row :gutter="20">
           <el-col :span="6">
-            <el-form-item label="面试部门" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="面试部门" prop="interviewDepartment">
+              <el-input v-model="ruleForm.interviewDepartment"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="面试岗位" prop="birthTime">
-              <el-input v-model="ruleForm.birthTime"></el-input>
+            <el-form-item label="面试岗位" prop="interviewJob">
+              <el-input v-model="ruleForm.interviewJob"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="报到时间" prop="birthTime">
+            <el-form-item label="报到时间" prop="dateWork ">
               <el-date-picker
-                  v-model="ruleForm.birthTime"
+                  v-model="ruleForm.dateWork "
                   type="date"
                   placeholder="选择报到时间"
                   style="width: 100%"
@@ -226,7 +244,7 @@
                   :prop="'contactsTable.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
-                <el-input :style="{width:item.width}" v-model="scope.row[item.prop]"></el-input>
+                <el-input :style="{width:'100%'}" v-model="scope.row[item.prop]"></el-input>
               </el-form-item>
             </template>
           </el-table-column>
@@ -261,7 +279,7 @@
                   :prop="'contactsTable.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
-                <el-input v-if="item.prop!=='workDate'" :style="{width:item.width}"
+                <el-input v-if="item.prop!=='workDate'" :style="{width:'100%'}"
                           v-model="scope.row[item.prop]"></el-input>
                 <el-date-picker
                     v-else
@@ -306,7 +324,7 @@
                   :prop="'contactsTable.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
-                <el-input :style="{width:item.width}"
+                <el-input :style="{width:'100%'}"
                           v-model="scope.row[item.prop]"></el-input>
               </el-form-item>
             </template>
@@ -345,7 +363,8 @@
                   :style="{marginBottom:0}"
               >
 
-                <el-input v-if="['dateIssue','dateEffective'].indexOf(item.prop)===-1" :style="{width:item.width}"
+                <el-input v-if="['dateIssue','dateEffective'].indexOf(item.prop)===-1"
+                          :style="{width:'100%'}"
                           v-model="scope.row[item.prop]"></el-input>
                 <el-date-picker
                     v-else
@@ -382,7 +401,7 @@
           </el-table-column>
         </el-table>
 <!--        <h2>八、添加附件</h2>-->
-        <h2>九、其他</h2>
+        <h2>八、其他</h2>
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="1.奖惩情况" prop="rewardsAndPunishments">
@@ -407,6 +426,14 @@
             </el-form-item>
           </el-col>
         </el-row>
+
+        <div class="btns">
+          <el-button @click="submit">保存</el-button>
+          <el-button>取消</el-button>
+          <el-button>复制链接</el-button>
+        </div>
+
+        <span style="margin-bottom: 30px;">到底了~</span>
       </div>
     </div>
 
@@ -416,15 +443,36 @@
 <script setup>
 import {reactive, ref} from 'vue'
 
+const avatar=ref()
+const avatarSrc=ref('')
 const formRef = ref()
 const ruleForm = reactive({
   name: '',
-  sex: '',
+  sex: 1,
   birthTime:'',
+  typeEthnic:'',
+  typePolitical:'',
+  identityNo:'',
+  socialNo:'',
   rewardsAndPunishments:'',
   studyPlan:'',
   training:'',
   memo:'',
+  email:'',
+  tel:'',
+  bankname:'',
+  account:'',
+  address:'',
+  stateMarriage:'',
+  postcode:'',
+  identityAddress:'',
+  typeBlood:'',
+  profession:'',
+  jobTitle:'',
+  foreignLanguageLevel:'',
+  computerSkillLevel:'',
+  specialty:'',
+  dateWork:'',
   // name: 'Hello',
   // region: '',
   // date1: '',
@@ -480,7 +528,6 @@ const ruleForm = reactive({
     },
   ]
 })
-
 const tableList=[
     'contactsTable',
   'workHistoryTable',
@@ -488,11 +535,41 @@ const tableList=[
   'certificateTable']
 const rules = reactive({
   name: [
-    {required: true, message: 'Please input Activity name', trigger: 'blur'},
+    {required: true, message: '请输入姓名', trigger: 'blur'},
   ],
-  contactsTableName: [
-    {required: true, message: 'name', trigger: 'change'},
-  ]
+  sex: [
+    {required: true, message: '请选择性别', trigger: 'blur'},
+  ],
+  birthTime: [
+    {required: true, message: '请选择出生日期', trigger: 'blur'},
+  ],
+  identityNo: [
+    {required: true, message: '请输入身份证号', trigger: 'blur'},
+  ],
+  socialNo: [
+    {required: true, message: '请输入社保号', trigger: 'blur'},
+  ],
+  typePolitical: [
+    {required: true, message: '请选择政治面貌', trigger: 'blur'},
+  ],
+  phone: [
+    {required: true, message: '请输入手机号', trigger: 'blur'},
+  ],
+  nativePlace: [
+    {required: true, message: '请输入籍贯', trigger: 'blur'},
+  ],
+  education: [
+    {required: true, message: '请输入学历', trigger: 'blur'},
+  ],
+  interviewDepartment:[
+    {required: true, message: '请输入面试部门', trigger: 'blur'},
+  ],
+  interviewJob:[
+    {required: true, message: '请输入面试岗位', trigger: 'blur'},
+  ],
+  // contactsTableName: [
+  //   {required: true, message: 'name', trigger: 'change'},
+  // ]
 })
 const startMarriageOptions = reactive([
   {
@@ -680,20 +757,32 @@ const del=(name,item)=>{
 }
 const download=()=>{}
 const preview=()=>{}
+const submit=()=>{
+  console.log(ruleForm)
+}
+const uploadAvatar=()=>{
+  avatar.value.click()
+}
+const getImg=()=>{
+  var file = avatar.value.files[0];
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function(e){
+    avatarSrc.value=e.target.result
+  }
+}
 </script>
 
 <style scoped lang="scss">
 .wrapper {
   display: flex;
-  padding: 30px;
+  padding: 0 0 0 30px;
+  height: 100vh;
+  overflow: hidden;
 }
-//.right{
-//  height: 100%;
-//  overflow: auto;
-//}
 .left, .right {
-  width: 50%;
   min-width: 740px;
+  padding: 10px 0;
   .title {
     margin-bottom: 20px;
     display: flex;
@@ -720,6 +809,11 @@ const preview=()=>{}
   }
 }
 .right{
+  width: 65%;
+  height: 100%;
+  overflow: auto;
+  padding-left:50px;
+  padding-right:20px;
   >span{
     display: inline-block;
     text-align: center;
@@ -727,6 +821,16 @@ const preview=()=>{}
     margin: 10px;
     color:#ccc;
     font-size: 14px;
+  }
+}
+.left{
+  width: 35%;
+  border-right:1px solid #ccc;
+  .photo{
+    width: 120px;
+    height: 170px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
   }
 }
 </style>
