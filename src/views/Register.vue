@@ -230,6 +230,7 @@
                   placeholder="选择报到时间"
                   style="width: 100%"
                   value-format="YYYY-MM-DD"
+                  :disabled-date="reportDisabledDate"
               />
             </el-form-item>
           </el-col>
@@ -298,6 +299,7 @@
                     end-placeholder="结束时间"
                     value-format="YYYY-MM"
                 />
+<!--                :disabled-date="workHistoryDisabledDate"-->
               </el-form-item>
             </template>
           </el-table-column>
@@ -794,7 +796,12 @@ const hrStaffInformationCertificateList = reactive([
   // }
 ])
 
-
+const reportDisabledDate=(time) => {
+  return time.getTime() <= Date.now()-24*60*60*1000
+}
+// const workHistoryDisabledDate=(time) => {
+//   return time.getTime() > Date.now()
+// }
 const add = (name) => {
   if (tableList.indexOf(name) === -1) {
     return

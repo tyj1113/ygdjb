@@ -12,7 +12,8 @@
     "element-plus": "^2.1.7",
     "normalize.css": "^8.0.1",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "compression-webpack-plugin": "^5.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.13",
@@ -20,6 +21,7 @@
     "@vue/cli-service": "~4.5.13",
     "@vue/compiler-sfc": "^3.0.0",
     "sass": "^1.26.5",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
