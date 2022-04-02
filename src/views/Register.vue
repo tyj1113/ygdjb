@@ -26,8 +26,9 @@
                   <div>
                     <el-button @click="uploadAvatar">上传</el-button>
                     <el-button @click="uploadAvatar">更换</el-button>
-                    <input type="file" accept="image/*" @change="getImg($event)" style="display:none" value="" id="img_z"
-                    ref="avatar"
+                    <input type="file" accept="image/*" @change="getImg" style="display:none" value=""
+                           id="img_z"
+                           ref="avatar"
                     />
                   </div>
                 </div>
@@ -41,7 +42,7 @@
             <el-row :gutter="20">
               <el-col :span="12">
                 <el-form-item label="姓名" prop="name">
-                  <el-input v-model="ruleForm.name"></el-input>
+                  <el-input size="large" v-model="ruleForm.name"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -57,16 +58,18 @@
               <el-col :span="12">
                 <el-form-item label="出生年月" prop="birthTime">
                   <el-date-picker
+                      size="large"
                       v-model="ruleForm.birthTime"
                       type="date"
                       placeholder="选择出生年月"
                       style="width: 100%"
+                      value-format="YYYY-MM-DD"
                   />
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="民族" >
-                  <el-input v-model="ruleForm.typeEthnic"></el-input>
+                <el-form-item label="民族">
+                  <el-input size="large" v-model="ruleForm.typeEthnic"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -74,53 +77,51 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
-            <el-form-item label="政治面貌" >
-              <el-select v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
+            <el-form-item label="政治面貌">
+              <el-select size="large" v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
                 <el-option v-for="item in typePoliticalOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="身份证号" prop="identityNo">
-              <el-input v-model="ruleForm.identityNo"></el-input>
+              <el-input size="large" v-model="ruleForm.identityNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="社保号" prop="socialNo">
-              <el-input v-model="ruleForm.socialNo"></el-input>
+              <el-input size="large" v-model="ruleForm.socialNo"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="手机" prop="phone">
-              <el-input v-model="ruleForm.phone"></el-input>
+              <el-input size="large" v-model="ruleForm.phone"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="电子邮件" prop="email">
-              <el-input v-model="ruleForm.email"></el-input>
+              <el-input size="large" v-model="ruleForm.email"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="固定电话" prop="tel">
-              <el-input v-model="ruleForm.tel"></el-input>
+              <el-input size="large" v-model="ruleForm.tel"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="开户行名称" prop="bankname">
-              <el-input v-model="ruleForm.bankname"></el-input>
+              <el-input size="large" v-model="ruleForm.bankname"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="14">
-            <el-form-item  prop="account">
-              <el-input v-model="ruleForm.account">
-<!--                <template #prepend>-->
-<!--                  <span>银行卡号</span>-->
-<!--                  <span style="color:red">(非杭州联合开发银行不填)</span>-->
-<!--                </template>-->
+            <el-form-item prop="account">
+              <span slot="label" style="font-size: 16px">银行卡号</span>
+              <span slot="label" style="color:red;font-size: 16px">(非杭州联合开发银行不填)</span>
+              <el-input size="large" v-model="ruleForm.account">
               </el-input>
             </el-form-item>
           </el-col>
@@ -128,12 +129,12 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="联系地址" prop="address">
-              <el-input v-model="ruleForm.address"></el-input>
+              <el-input size="large" v-model="ruleForm.address"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="婚姻" prop="stateMarriage">
-              <el-select v-model="ruleForm.stateMarriage" placeholder="请选择婚姻状况" >
+              <el-select v-model="ruleForm.stateMarriage" placeholder="请选择婚姻状况">
                 <el-option v-for="item in startMarriageOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
@@ -142,24 +143,24 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="籍贯" prop="nativePlace">
-              <el-input v-model="ruleForm.nativePlace"></el-input>
+              <el-input size="large" v-model="ruleForm.nativePlace"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="邮编" prop="postcode">
-              <el-input v-model="ruleForm.postcode"></el-input>
+              <el-input size="large" v-model="ruleForm.postcode"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="户口" prop="identityAddress ">
-              <el-input v-model="ruleForm.identityAddress "></el-input>
+              <el-input size="large" v-model="ruleForm.identityAddress "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="血型" prop="typeBlood ">
-              <el-input v-model="ruleForm.typeBlood "></el-input>
+              <el-input size="large" v-model="ruleForm.typeBlood "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -169,39 +170,42 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="毕业院校" prop="graduatedSchool">
-              <el-input v-model="ruleForm.graduatedSchool"></el-input>
+              <el-input size="large" v-model="ruleForm.graduatedSchool"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="学历" prop="education">
-              <el-input v-model="ruleForm.education"></el-input>
+              <!--              <el-input size="large" v-model="ruleForm.education"></el-input>-->
+              <el-select v-model="ruleForm.education" placeholder="请选择学历">
+                <el-option v-for="item in educationOptions" :label="item.label" :value="item.value"/>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="专业" prop="profession">
-              <el-input v-model="ruleForm.profession"></el-input>
+              <el-input size="large" v-model="ruleForm.profession"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="职称" prop="jobTitle ">
-              <el-input v-model="ruleForm.jobTitle "></el-input>
+              <el-input size="large" v-model="ruleForm.jobTitle "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="外语水平" prop="foreignLanguageLevel ">
-              <el-input v-model="ruleForm.foreignLanguageLevel "></el-input>
+              <el-input size="large" v-model="ruleForm.foreignLanguageLevel "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="计算机水平" prop="computerSkillLevel">
-              <el-input v-model="ruleForm.computerSkillLevel"></el-input>
+              <el-input size="large" v-model="ruleForm.computerSkillLevel"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="特长" prop="specialty">
-              <el-input v-model="ruleForm.specialty"></el-input>
+              <el-input size="large" v-model="ruleForm.specialty"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -209,29 +213,31 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="面试部门" prop="interviewDepartment">
-              <el-input v-model="ruleForm.interviewDepartment"></el-input>
+              <el-input size="large" v-model="ruleForm.interviewDepartment"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="面试岗位" prop="interviewJob">
-              <el-input v-model="ruleForm.interviewJob"></el-input>
+              <el-input size="large" v-model="ruleForm.interviewJob"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="报到时间" prop="dateWork ">
               <el-date-picker
+                  size="large"
                   v-model="ruleForm.dateWork "
                   type="date"
                   placeholder="选择报到时间"
                   style="width: 100%"
+                  value-format="YYYY-MM-DD"
               />
             </el-form-item>
           </el-col>
         </el-row>
         <h2>四、紧急联系人</h2>
-        <el-table :data="ruleForm.contactsTable" style="width: 100%" border>
+        <el-table :data="ruleForm.hrStaffInformationContactList" style="width: 100%" border>
           <el-table-column
-              v-for="item in contactsTable"
+              v-for="item in hrStaffInformationContactList"
               :min-width="item.width"
               :label="item.label"
               :prop="item.prop"
@@ -241,7 +247,7 @@
             <template v-slot="scope">
               <el-form-item
                   v-if="!scope.row.add"
-                  :prop="'contactsTable.' + scope.$index + '.' + item.prop"
+                  :prop="'hrStaffInformationContactList.' + scope.$index + '.' + item.prop"
                   :style="{marginBottom:0}"
                   :rules="rules[item.prop]"
               >
@@ -255,19 +261,19 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('contactsTable')">
+              <el-button v-if="scope.row.add" @click="add('hrStaffInformationContactList')">
                 新增
               </el-button>
-              <el-button v-else @click="del('contactsTable',scope.row)">
+              <el-button v-else @click="del('hrStaffInformationContactList',scope.row)">
                 删除
               </el-button>
             </template>
           </el-table-column>
         </el-table>
         <h2>五、工作经历</h2>
-        <el-table :data="ruleForm.workHistoryTable" style="width: 100%" border>
+        <el-table :data="ruleForm.hrStaffInformationExperienceList" style="width: 100%" border>
           <el-table-column
-              v-for="item in workHistoryTable"
+              v-for="item in hrStaffInformationExperienceList"
               :min-width="item.width"
               :label="item.label"
               :prop="item.prop"
@@ -277,7 +283,7 @@
             <template v-slot="scope">
               <el-form-item
                   v-if="!scope.row.add"
-                  :prop="'contactsTable.' + scope.$index + '.input'"
+                  :prop="'hrStaffInformationContactList.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
                 <el-input v-if="item.prop!=='workDate'" :style="{width:'100%'}"
@@ -289,6 +295,7 @@
                     range-separator="到"
                     start-placeholder="开始时间"
                     end-placeholder="结束时间"
+                    value-format="YYYY-MM"
                 />
               </el-form-item>
             </template>
@@ -299,10 +306,10 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('workHistoryTable')">
+              <el-button v-if="scope.row.add" @click="add('hrStaffInformationExperienceList')">
                 新增
               </el-button>
-              <el-button v-else @click="del('workHistoryTable',scope.row)">
+              <el-button v-else @click="del('hrStaffInformationExperienceList',scope.row)">
                 删除
               </el-button>
             </template>
@@ -310,9 +317,9 @@
         </el-table>
 
         <h2>六、家庭状况</h2>
-        <el-table :data="ruleForm.familyDetailTable" style="width: 100%" border>
+        <el-table :data="ruleForm.hrStaffInformationFamilyList" style="width: 100%" border>
           <el-table-column
-              v-for="item in familyDetailTable"
+              v-for="item in hrStaffInformationFamilyList"
               :min-width="item.width"
               :label="item.label"
               :prop="item.prop"
@@ -322,7 +329,7 @@
             <template v-slot="scope">
               <el-form-item
                   v-if="!scope.row.add"
-                  :prop="'contactsTable.' + scope.$index + '.input'"
+                  :prop="'hrStaffInformationContactList.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
                 <el-input :style="{width:'100%'}"
@@ -336,10 +343,10 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('familyDetailTable')">
+              <el-button v-if="scope.row.add" @click="add('hrStaffInformationFamilyList')">
                 新增
               </el-button>
-              <el-button v-else @click="del('familyDetailTable',scope.row)">
+              <el-button v-else @click="del('hrStaffInformationFamilyList',scope.row)">
                 删除
               </el-button>
             </template>
@@ -348,9 +355,9 @@
 
         <span>下面还有请向下滑</span>
         <h2>七、所获证书</h2>
-        <el-table :data="ruleForm.certificateTable" style="width: 100%" border>
+        <el-table :data="ruleForm.hrStaffInformationCertificateList" style="width: 100%" border>
           <el-table-column
-              v-for="item in certificateTable"
+              v-for="item in hrStaffInformationCertificateList"
               :min-width="item.width"
               :label="item.label"
               :prop="item.prop"
@@ -360,7 +367,7 @@
             <template v-slot="scope">
               <el-form-item
                   v-if="!scope.row.add"
-                  :prop="'contactsTable.' + scope.$index + '.input'"
+                  :prop="'hrStaffInformationContactList.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
 
@@ -383,17 +390,17 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('certificateTable')">
+              <el-button v-if="scope.row.add" @click="add('hrStaffInformationCertificateList')">
                 新增
               </el-button>
               <div class="btns" v-else>
-                <el-button  @click="preview()">
+                <el-button @click="preview()">
                   预览
                 </el-button>
-                <el-button  @click="download()">
+                <el-button @click="download()">
                   下载
                 </el-button>
-                <el-button  @click="del('certificateTable',scope.row)">
+                <el-button @click="del('hrStaffInformationCertificateList',scope.row)">
                   删除
                 </el-button>
               </div>
@@ -401,7 +408,7 @@
             </template>
           </el-table-column>
         </el-table>
-<!--        <h2>八、添加附件</h2>-->
+        <!--        <h2>八、添加附件</h2>-->
         <h2>八、其他</h2>
         <el-row :gutter="20">
           <el-col :span="12">
@@ -429,7 +436,7 @@
         </el-row>
 
         <div class="btns">
-          <el-button @click="submit">保存</el-button>
+          <el-button @click="submit(formRef)">保存</el-button>
           <el-button>取消</el-button>
           <el-button>复制链接</el-button>
         </div>
@@ -443,100 +450,118 @@
 
 <script setup>
 import {reactive, ref} from 'vue'
+import {ElMessage} from 'element-plus'
+import axios from 'axios'
 
-const avatar=ref()
-const avatarSrc=ref('')
+const defaultId = {
+  id: 0,
+  companyId: 186712709016981505,
+  organId: 199798025898561536
+}
+const avatar = ref()
+const avatarSrc = ref('')
 const formRef = ref()
 const ruleForm = reactive({
+  id: 0,
+  companyId: 186712709016981505,
+  organId: 199798025898561536,
+  operationId: 0,
+  departmentId: 0,
+  departmentName: '测试',
+  dateWorking: '2022-04-02',
+  photo: '',
   name: '',
   sex: 1,
-  birthTime:'',
-  typeEthnic:'',
-  typePolitical:'',
-  identityNo:'',
-  socialNo:'',
-  rewardsAndPunishments:'',
-  studyPlan:'',
-  training:'',
-  memo:'',
-  email:'',
-  tel:'',
-  bankname:'',
-  account:'',
-  address:'',
-  stateMarriage:'',
-  postcode:'',
-  identityAddress:'',
-  typeBlood:'',
-  profession:'',
-  jobTitle:'',
-  foreignLanguageLevel:'',
-  computerSkillLevel:'',
-  specialty:'',
-  dateWork:'',
-  // name: 'Hello',
-  // region: '',
-  // date1: '',
-  // date2: '',
-  // delivery: false,
-  // type: [],
-  // resource: '',
-  // desc: '',
-  contactsTable: [
+  birthTime: '',
+  typeEthnic: '',
+  typePolitical: '',
+  identityNo: '',
+  socialNo: '',
+  phone: '',
+  email: '',
+  tel: '',
+  bankname: '',
+  account: '',
+  address: '',
+  stateMarriage: '',
+  nativePlace: '',
+  postcode: '',
+  identityAddress: '',
+  typeBlood: '',
+  graduatedSchool: '',
+  education: '',
+  profession: '',
+  jobTitle: '',
+  foreignLanguageLevel: '',
+  computerSkillLevel: '',
+  specialty: '',
+  interviewDepartment: '',
+  interviewJob: '',
+  dateWork: '',
+  rewardsAndPunishments: '',
+  studyPlan: '',
+  training: '',
+  memo: '',
+  hrStaffInformationContactList: [
     {
       name: '',
       relationship: '',
-      phone: ''
+      phone: '',
+      ...defaultId
     },
     {
       add: true
     },
   ],
-  workHistoryTable: [
+  hrStaffInformationExperienceList: [
     {
       workDate: '',
       companyName: '',
       department: '',
       job: '',
-      content: ''
+      content: '',
+      ...defaultId
     },
     {
       add: true
     },
   ],
-  familyDetailTable: [
+  hrStaffInformationFamilyList: [
     {
       relationship: '',
       name: '',
       phone: '',
       companyName: '',
-      address: ''
+      address: '',
+      ...defaultId
     },
     {
       add: true
     },
   ],
-  certificateTable:[
+  hrStaffInformationCertificateList: [
     {
       certificateTypeName: '',
       no: '',
       dateIssue: '',
       dateEffective: '',
-      userName: ''
+      userName: '',
+      ...defaultId
     },
     {
       add: true
     },
   ]
 })
-const tableList=[
-    'contactsTable',
-  'workHistoryTable',
-  'familyDetailTable',
-  'certificateTable']
+const tableList = [
+  'hrStaffInformationContactList',
+  'hrStaffInformationExperienceList',
+  'hrStaffInformationFamilyList',
+  'hrStaffInformationCertificateList']
 const rules = reactive({
   name: [
     {required: true, message: '请输入姓名', trigger: 'blur'},
+    // {pattern: /^(?:[\u4e00-\u9fa5·]{2,16})$/, message: '请输入正确姓名', trigger: 'blur'},
   ],
   sex: [
     {required: true, message: '请选择性别', trigger: 'blur'},
@@ -546,6 +571,10 @@ const rules = reactive({
   ],
   identityNo: [
     {required: true, message: '请输入身份证号', trigger: 'blur'},
+    {
+      // pattern: /^\d{6}((((((19|20)\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(((19|20)\d{2})(0[13578]|1[02])31)|((19|20)\d{2})02(0[1-9]|1\d|2[0-8])|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))0229))\d{3})|((((\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|((\d{2})(0[13578]|1[02])31)|((\d{2})02(0[1-9]|1\d|2[0-8]))|(([13579][26]|[2468][048]|0[048])0229))\d{2}))(\d|X|x)$/,
+      message: '请输入正确的身份证号', trigger: 'blur'
+    },
   ],
   socialNo: [
     {required: true, message: '请输入社保号', trigger: 'blur'},
@@ -555,6 +584,7 @@ const rules = reactive({
   ],
   phone: [
     {required: true, message: '请输入手机号', trigger: 'blur'},
+    // {pattern: /^(?:(?:\+|00)86)?1[3-9]\d{9}$/, message: '请输入正确的手机号码', trigger: 'blur'},
   ],
   nativePlace: [
     {required: true, message: '请输入籍贯', trigger: 'blur'},
@@ -562,14 +592,14 @@ const rules = reactive({
   education: [
     {required: true, message: '请输入学历', trigger: 'blur'},
   ],
-  interviewDepartment:[
+  interviewDepartment: [
     {required: true, message: '请输入面试部门', trigger: 'blur'},
   ],
-  interviewJob:[
+  interviewJob: [
     {required: true, message: '请输入面试岗位', trigger: 'blur'},
   ],
   relationship: [
-    {required: true, message: 'name', trigger: 'blur'},
+    {required: true, message: '请输入关系', trigger: 'blur'},
   ]
 })
 const startMarriageOptions = reactive([
@@ -600,36 +630,58 @@ const typePoliticalOptions = reactive([
     value: 2
   }
 ])
+const educationOptions = reactive([
+  {
+    label: '大专',
+    value: 1
+  },
+  {
+    label: '本科',
+    value: 2
+  },
+  {
+    label: '硕士',
+    value: 3
+  },
+  {
+    label: '博士',
+    value: 4
+  },
+])
 
-const tableItems={
-  contactsTableItem : {
+const tableItems = {
+  hrStaffInformationContactListItem: {
     name: '',
     relationship: '',
-    phone: ''
+    phone: '',
+    ...defaultId
   },
-  workHistoryTableItem : {
+  hrStaffInformationExperienceListItem: {
     workDate: '',
     companyName: '',
     department: '',
     job: '',
-    content: ''
+    content: '',
+    ...defaultId
   },
-  familyDetailTableItem:{
+  hrStaffInformationFamilyListItem: {
     relationship: '',
     name: '',
     phone: '',
     companyName: '',
-    address: ''
+    address: '',
+    ...defaultId
   },
-  certificateTableItem:{
+  hrStaffInformationCertificateListItem: {
     certificateTypeName: '',
     no: '',
     dateIssue: '',
     dateEffective: '',
-    userName: ''
+    userName: '',
+    ...defaultId
   }
 }
-const contactsTable = reactive([
+const hrStaffInformationContactList = reactive([
   {
     prop: 'name',
     label: '联系人',
@@ -649,7 +701,7 @@ const contactsTable = reactive([
   //   label:'操作'
   // }
 ])
-const workHistoryTable = reactive([
+const hrStaffInformationExperienceList = reactive([
   {
     prop: 'workDate',
     label: '工作时间',
@@ -679,7 +731,7 @@ const workHistoryTable = reactive([
   //   label:'操作'
   // }
 ])
-const familyDetailTable = reactive([
+const hrStaffInformationFamilyList = reactive([
   {
     prop: 'relationship',
     label: '关系',
@@ -709,7 +761,7 @@ const familyDetailTable = reactive([
   //   label:'操作'
   // }
 ])
-const certificateTable = reactive([
+const hrStaffInformationCertificateList = reactive([
   {
     prop: 'certificateTypeName',
     label: '证书名称',
@@ -742,34 +794,71 @@ const certificateTable = reactive([
 
 
 const add = (name) => {
-  if (tableList.indexOf(name)===-1) {
+  if (tableList.indexOf(name) === -1) {
     return
   }
-  console.log(tableList.certificateTable)
-  const last=ruleForm[name].pop()
-  ruleForm[name].push(JSON.parse(JSON.stringify(tableItems[name+'Item'])),last)
+  const last = ruleForm[name].pop()
+  ruleForm[name].push(JSON.parse(JSON.stringify(tableItems[name + 'Item'])), last)
 }
-const del=(name,item)=>{
-  if (tableList.indexOf(name)===-1 || ruleForm[name].length <= 2) {
+const del = (name, item) => {
+  if (tableList.indexOf(name) === -1 || ruleForm[name].length <= 2) {
     return
   }
   const index = ruleForm[name].indexOf(item)
   ruleForm[name].splice(index, 1)
 }
-const download=()=>{}
-const preview=()=>{}
-const submit=()=>{
-  console.log(ruleForm)
+const download = () => {
 }
-const uploadAvatar=()=>{
+const preview = () => {
+}
+const delAdd = () => {
+  const copy = JSON.parse(JSON.stringify(ruleForm))
+  tableList.forEach(item => {
+    copy[item].pop()
+  })
+  return copy
+}
+const formatterDate = (date) => {
+  let workHistoryList = date['hrStaffInformationExperienceList']
+  if (workHistoryList.length > 0) {
+    workHistoryList = workHistoryList.map(item => {
+      if (item.workDate !== '' && Array.isArray(item.workDate)) {
+        item.workDate = item.workDate.join()
+      }
+      return item
+    })
+  }
+}
+
+const submit = async (formEl) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      const copy = delAdd()
+      formatterDate(copy)
+      axios.post('http://192.168.199.159/api/staff/v1/save', copy).then(res => {
+        const {data} = res
+        if (data.code === 200) {
+          ElMessage.success('保存成功')
+        }
+      }, err => {
+        console.log(err);
+      })
+    } else {
+      ElMessage.error('验证失败,请检查填写内容')
+    }
+  })
+}
+const uploadAvatar = () => {
   avatar.value.click()
 }
-const getImg=()=>{
-  var file = avatar.value.files[0];
-  var reader = new FileReader();
+const getImg = () => {
+  let file = avatar.value.files[0];
+  let reader = new FileReader();
   reader.readAsDataURL(file);
-  reader.onload = function(e){
-    avatarSrc.value=e.target.result
+  reader.onload = function (e) {
+    avatarSrc.value = e.target.result
+    ruleForm.photo = avatarSrc.value
   }
 }
 </script>
@@ -781,11 +870,13 @@ const getImg=()=>{
   height: 100vh;
   overflow: hidden;
 }
+
 .left, .right {
   min-width: 740px;
   padding: 10px 0 0 0;
+
   .title {
-    margin-bottom: 20px;
+    margin: 40px 0;
     display: flex;
     align-items: center;
 
@@ -809,20 +900,22 @@ const getImg=()=>{
     }
   }
 }
-.right{
+
+.right {
   width: 65%;
-  //height: 100%;
   overflow: auto;
-  padding-left:50px;
-  padding-right:20px;
-  >span{
+  padding-left: 50px;
+  padding-right: 20px;
+
+  > span {
     display: inline-block;
     text-align: center;
     width: 100%;
     margin: 10px;
-    color:#ccc;
+    color: #ccc;
     font-size: 14px;
   }
+
   &::-webkit-scrollbar {
     // 滚动条的背景
     width: 16px;
@@ -837,9 +930,6 @@ const getImg=()=>{
     border: 5px solid transparent;
   }
 
-  //&::-webkit-scrollbar-track {
-  //  box-shadow: 1px 1px 5px #191a37 inset;
-  //}
 
   &::-webkit-scrollbar-thumb {
     //滚动条的滑块样式修改
@@ -852,28 +942,13 @@ const getImg=()=>{
   &::-webkit-scrollbar-corner {
     background: #fff;
   }
-  //&::-webkit-scrollbar {
-  //  /*滚动条整体样式*/
-  //  width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
-  //  height: 1px;
-  //}
-  //&::-webkit-scrollbar-thumb {
-  //  /*滚动条里面小方块*/
-  //  border-radius: 10px;
-  //  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-  //  background   : deepskyblue;
-  //}
-  //&::-webkit-scrollbar-track {
-  //  /*滚动条里面轨道*/
-  //  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-  //  border-radius: 10px;
-  //  background   : #fff;
-  //}
 }
-.left{
+
+.left {
   width: 35%;
-  border-right:1px solid #ccc;
-  .photo{
+  border-right: 1px solid #ccc;
+
+  .photo {
     width: 120px;
     height: 170px;
     border: 1px solid #ccc;
@@ -881,4 +956,7 @@ const getImg=()=>{
   }
 }
 
+:deep(.el-form-item__label) {
+  font-size: 16px !important;
+}
 </style>
