@@ -24,8 +24,8 @@
                     <img :src="avatarSrc" alt="" style="width: 100%;">
                   </div>
                   <div>
-                    <el-button @click="uploadAvatar">上传</el-button>
-                    <el-button @click="uploadAvatar">更换</el-button>
+                    <el-button size="small" @click="uploadAvatar">上传</el-button>
+                    <el-button size="small" @click="uploadAvatar">更换</el-button>
                     <input type="file" accept="image/*" @change="getImg" style="display:none" value=""
                            id="img_z"
                            ref="avatar"
@@ -42,7 +42,7 @@
             <el-row :gutter="20">
               <el-col :span="12">
                 <el-form-item label="姓名" prop="name">
-                  <el-input  v-model="ruleForm.name"></el-input>
+                  <el-input size="small"  v-model="ruleForm.name"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -58,7 +58,7 @@
               <el-col :span="12">
                 <el-form-item label="出生年月" prop="birthTime">
                   <el-date-picker
-
+                      size="small"
                       v-model="ruleForm.birthTime"
                       type="date"
                       placeholder="选择出生年月"
@@ -69,7 +69,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item label="民族">
-                  <el-input  v-model="ruleForm.typeEthnic"></el-input>
+                  <el-input size="small"  v-model="ruleForm.typeEthnic"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -78,50 +78,50 @@
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="政治面貌">
-              <el-select  v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
+              <el-select  size="small" v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
                 <el-option v-for="item in typePoliticalOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="身份证号" prop="identityNo">
-              <el-input  v-model="ruleForm.identityNo"></el-input>
+              <el-input size="small"  v-model="ruleForm.identityNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="社保号" prop="socialNo">
-              <el-input  v-model="ruleForm.socialNo"></el-input>
+              <el-input size="small"  v-model="ruleForm.socialNo"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="手机" prop="phone">
-              <el-input  v-model="ruleForm.phone"></el-input>
+              <el-input size="small"  v-model="ruleForm.phone"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="电子邮件" prop="email">
-              <el-input  v-model="ruleForm.email"></el-input>
+              <el-input size="small"  v-model="ruleForm.email"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="固定电话" prop="tel">
-              <el-input  v-model="ruleForm.tel"></el-input>
+              <el-input size="small"  v-model="ruleForm.tel"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="开户行名称" prop="bankname">
-              <el-input  v-model="ruleForm.bankname"></el-input>
+              <el-input size="small"  v-model="ruleForm.bankname"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="14">
             <el-form-item prop="account">
               <span slot="label">银行卡号</span>
               <span slot="label" style="color:red;">(非杭州联合开发银行不填)</span>
-              <el-input  v-model="ruleForm.account">
+              <el-input size="small"  v-model="ruleForm.account">
               </el-input>
             </el-form-item>
           </el-col>
@@ -129,12 +129,12 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="联系地址" prop="address">
-              <el-input  v-model="ruleForm.address"></el-input>
+              <el-input size="small"  v-model="ruleForm.address"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="婚姻" prop="stateMarriage">
-              <el-select v-model="ruleForm.stateMarriage" placeholder="请选择婚姻状况">
+              <el-select size="small" v-model="ruleForm.stateMarriage" placeholder="请选择婚姻状况">
                 <el-option v-for="item in startMarriageOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
@@ -143,24 +143,24 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="籍贯" prop="nativePlace">
-              <el-input  v-model="ruleForm.nativePlace"></el-input>
+              <el-input size="small"  v-model="ruleForm.nativePlace"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="邮编" prop="postcode">
-              <el-input  v-model="ruleForm.postcode"></el-input>
+              <el-input size="small"  v-model="ruleForm.postcode"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="户口" prop="identityAddress ">
-              <el-input  v-model="ruleForm.identityAddress "></el-input>
+              <el-input size="small"  v-model="ruleForm.identityAddress "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="血型" prop="typeBlood ">
-              <el-input  v-model="ruleForm.typeBlood "></el-input>
+              <el-input size="small"  v-model="ruleForm.typeBlood "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -170,42 +170,42 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="毕业院校" prop="graduatedSchool">
-              <el-input  v-model="ruleForm.graduatedSchool"></el-input>
+              <el-input size="small"  v-model="ruleForm.graduatedSchool"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="学历" prop="education">
-              <!--              <el-input  v-model="ruleForm.education"></el-input>-->
-              <el-select v-model="ruleForm.education" placeholder="请选择学历">
+              <!--              <el-input size="small"  v-model="ruleForm.education"></el-input>-->
+              <el-select size="small" v-model="ruleForm.education" placeholder="请选择学历">
                 <el-option v-for="item in educationOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="专业" prop="profession">
-              <el-input  v-model="ruleForm.profession"></el-input>
+              <el-input size="small"  v-model="ruleForm.profession"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="职称" prop="jobTitle ">
-              <el-input  v-model="ruleForm.jobTitle "></el-input>
+              <el-input size="small"  v-model="ruleForm.jobTitle "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="外语水平" prop="foreignLanguageLevel ">
-              <el-input  v-model="ruleForm.foreignLanguageLevel "></el-input>
+              <el-input size="small"  v-model="ruleForm.foreignLanguageLevel "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="计算机水平" prop="computerSkillLevel">
-              <el-input  v-model="ruleForm.computerSkillLevel"></el-input>
+              <el-input size="small"  v-model="ruleForm.computerSkillLevel"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="特长" prop="specialty">
-              <el-input  v-model="ruleForm.specialty"></el-input>
+              <el-input size="small"  v-model="ruleForm.specialty"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -213,18 +213,18 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="面试部门" prop="interviewDepartment">
-              <el-input  v-model="ruleForm.interviewDepartment"></el-input>
+              <el-input size="small"  v-model="ruleForm.interviewDepartment"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="面试岗位" prop="interviewJob">
-              <el-input  v-model="ruleForm.interviewJob"></el-input>
+              <el-input size="small"  v-model="ruleForm.interviewJob"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="报到时间" prop="dateWork ">
               <el-date-picker
-
+                  size="small"
                   v-model="ruleForm.dateWork "
                   type="date"
                   placeholder="选择报到时间"
@@ -251,7 +251,7 @@
                   :style="{marginBottom:0}"
                   :rules="rules[item.prop]"
               >
-                <el-input :style="{width:'100%'}" v-model="scope.row[item.prop]"></el-input>
+                <el-input size="small" :style="{width:'100%'}" v-model="scope.row[item.prop]"></el-input>
               </el-form-item>
             </template>
           </el-table-column>
@@ -261,10 +261,10 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('hrStaffInformationContactList')">
+              <el-button size="small" v-if="scope.row.add" @click="add('hrStaffInformationContactList')">
                 新增
               </el-button>
-              <el-button v-else @click="del('hrStaffInformationContactList',scope.row)">
+              <el-button size="small" v-else @click="del('hrStaffInformationContactList',scope.row)">
                 删除
               </el-button>
             </template>
@@ -286,10 +286,11 @@
                   :prop="'hrStaffInformationContactList.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
-                <el-input v-if="item.prop!=='workDate'" :style="{width:'100%'}"
+                <el-input size="small" v-if="item.prop!=='workDate'" :style="{width:'100%'}"
                           v-model="scope.row[item.prop]"></el-input>
                 <el-date-picker
                     v-else
+                    size="small"
                     v-model="scope.row[item.prop]"
                     type="monthrange"
                     range-separator="到"
@@ -306,10 +307,10 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('hrStaffInformationExperienceList')">
+              <el-button size="small" v-if="scope.row.add" @click="add('hrStaffInformationExperienceList')">
                 新增
               </el-button>
-              <el-button v-else @click="del('hrStaffInformationExperienceList',scope.row)">
+              <el-button size="small" v-else @click="del('hrStaffInformationExperienceList',scope.row)">
                 删除
               </el-button>
             </template>
@@ -332,7 +333,7 @@
                   :prop="'hrStaffInformationContactList.' + scope.$index + '.input'"
                   :style="{marginBottom:0}"
               >
-                <el-input :style="{width:'100%'}"
+                <el-input size="small" :style="{width:'100%'}"
                           v-model="scope.row[item.prop]"></el-input>
               </el-form-item>
             </template>
@@ -343,10 +344,10 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('hrStaffInformationFamilyList')">
+              <el-button size="small" v-if="scope.row.add" @click="add('hrStaffInformationFamilyList')">
                 新增
               </el-button>
-              <el-button v-else @click="del('hrStaffInformationFamilyList',scope.row)">
+              <el-button size="small" v-else @click="del('hrStaffInformationFamilyList',scope.row)">
                 删除
               </el-button>
             </template>
@@ -371,11 +372,12 @@
                   :style="{marginBottom:0}"
               >
 
-                <el-input v-if="['dateIssue','dateEffective'].indexOf(item.prop)===-1"
+                <el-input size="small" v-if="['dateIssue','dateEffective'].indexOf(item.prop)===-1"
                           :style="{width:'100%'}"
                           v-model="scope.row[item.prop]"></el-input>
                 <el-date-picker
                     v-else
+                    size="small"
                     v-model="scope.row[item.prop]"
                     type="date"
                     placeholder="选择时间"
@@ -390,17 +392,17 @@
               align="center"
           >
             <template v-slot="scope">
-              <el-button v-if="scope.row.add" @click="add('hrStaffInformationCertificateList')">
+              <el-button size="small" v-if="scope.row.add" @click="add('hrStaffInformationCertificateList')">
                 新增
               </el-button>
               <div class="btns" v-else>
-                <el-button @click="preview()">
+                <el-button size="small" @click="preview()">
                   预览
                 </el-button>
-                <el-button @click="download()">
+                <el-button size="small" @click="download()">
                   下载
                 </el-button>
-                <el-button @click="del('hrStaffInformationCertificateList',scope.row)">
+                <el-button size="small" @click="del('hrStaffInformationCertificateList',scope.row)">
                   删除
                 </el-button>
               </div>
@@ -413,32 +415,32 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="1.奖惩情况" prop="rewardsAndPunishments">
-              <el-input v-model="ruleForm.rewardsAndPunishments" type="textarea" resize="none"></el-input>
+              <el-input size="small" v-model="ruleForm.rewardsAndPunishments" type="textarea" resize="none"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="2.个人学习计划" prop="studyPlan">
-              <el-input v-model="ruleForm.studyPlan" type="textarea" resize="none"></el-input>
+              <el-input size="small" v-model="ruleForm.studyPlan" type="textarea" resize="none"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="3.培训情况" prop="training">
-              <el-input v-model="ruleForm.training" type="textarea" resize="none"></el-input>
+              <el-input size="small" v-model="ruleForm.training" type="textarea" resize="none"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="4.备注" prop="memo">
-              <el-input v-model="ruleForm.memo" type="textarea" resize="none"></el-input>
+              <el-input size="small" v-model="ruleForm.memo" type="textarea" resize="none"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
 
         <div class="btns">
-          <el-button @click="submit(formRef)">保存</el-button>
-          <el-button>取消</el-button>
-          <el-button>复制链接</el-button>
+          <el-button size="small" @click="submit(formRef)">保存</el-button>
+          <el-button size="small">取消</el-button>
+          <el-button size="small">复制链接</el-button>
         </div>
 
         <span style="margin-bottom: 30px;">到底了~</span>
