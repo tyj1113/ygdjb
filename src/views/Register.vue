@@ -42,7 +42,7 @@
             <el-row :gutter="20">
               <el-col :span="12">
                 <el-form-item label="姓名" prop="name">
-                  <el-input size="large" v-model="ruleForm.name"></el-input>
+                  <el-input  v-model="ruleForm.name"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -58,7 +58,7 @@
               <el-col :span="12">
                 <el-form-item label="出生年月" prop="birthTime">
                   <el-date-picker
-                      size="large"
+
                       v-model="ruleForm.birthTime"
                       type="date"
                       placeholder="选择出生年月"
@@ -69,7 +69,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item label="民族">
-                  <el-input size="large" v-model="ruleForm.typeEthnic"></el-input>
+                  <el-input  v-model="ruleForm.typeEthnic"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -78,50 +78,50 @@
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="政治面貌">
-              <el-select size="large" v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
+              <el-select  v-model="ruleForm.typePolitical" placeholder="请选择政治面貌" prop="typePolitical">
                 <el-option v-for="item in typePoliticalOptions" :label="item.label" :value="item.value"/>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="身份证号" prop="identityNo">
-              <el-input size="large" v-model="ruleForm.identityNo"></el-input>
+              <el-input  v-model="ruleForm.identityNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="社保号" prop="socialNo">
-              <el-input size="large" v-model="ruleForm.socialNo"></el-input>
+              <el-input  v-model="ruleForm.socialNo"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="手机" prop="phone">
-              <el-input size="large" v-model="ruleForm.phone"></el-input>
+              <el-input  v-model="ruleForm.phone"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="电子邮件" prop="email">
-              <el-input size="large" v-model="ruleForm.email"></el-input>
+              <el-input  v-model="ruleForm.email"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="固定电话" prop="tel">
-              <el-input size="large" v-model="ruleForm.tel"></el-input>
+              <el-input  v-model="ruleForm.tel"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="7">
             <el-form-item label="开户行名称" prop="bankname">
-              <el-input size="large" v-model="ruleForm.bankname"></el-input>
+              <el-input  v-model="ruleForm.bankname"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="14">
             <el-form-item prop="account">
-              <span slot="label" style="font-size: 16px">银行卡号</span>
-              <span slot="label" style="color:red;font-size: 16px">(非杭州联合开发银行不填)</span>
-              <el-input size="large" v-model="ruleForm.account">
+              <span slot="label">银行卡号</span>
+              <span slot="label" style="color:red;">(非杭州联合开发银行不填)</span>
+              <el-input  v-model="ruleForm.account">
               </el-input>
             </el-form-item>
           </el-col>
@@ -129,7 +129,7 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="联系地址" prop="address">
-              <el-input size="large" v-model="ruleForm.address"></el-input>
+              <el-input  v-model="ruleForm.address"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
@@ -143,24 +143,24 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="籍贯" prop="nativePlace">
-              <el-input size="large" v-model="ruleForm.nativePlace"></el-input>
+              <el-input  v-model="ruleForm.nativePlace"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="邮编" prop="postcode">
-              <el-input size="large" v-model="ruleForm.postcode"></el-input>
+              <el-input  v-model="ruleForm.postcode"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="14">
             <el-form-item label="户口" prop="identityAddress ">
-              <el-input size="large" v-model="ruleForm.identityAddress "></el-input>
+              <el-input  v-model="ruleForm.identityAddress "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="血型" prop="typeBlood ">
-              <el-input size="large" v-model="ruleForm.typeBlood "></el-input>
+              <el-input  v-model="ruleForm.typeBlood "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -170,12 +170,12 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="毕业院校" prop="graduatedSchool">
-              <el-input size="large" v-model="ruleForm.graduatedSchool"></el-input>
+              <el-input  v-model="ruleForm.graduatedSchool"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="学历" prop="education">
-              <!--              <el-input size="large" v-model="ruleForm.education"></el-input>-->
+              <!--              <el-input  v-model="ruleForm.education"></el-input>-->
               <el-select v-model="ruleForm.education" placeholder="请选择学历">
                 <el-option v-for="item in educationOptions" :label="item.label" :value="item.value"/>
               </el-select>
@@ -183,29 +183,29 @@
           </el-col>
           <el-col :span="6">
             <el-form-item label="专业" prop="profession">
-              <el-input size="large" v-model="ruleForm.profession"></el-input>
+              <el-input  v-model="ruleForm.profession"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="职称" prop="jobTitle ">
-              <el-input size="large" v-model="ruleForm.jobTitle "></el-input>
+              <el-input  v-model="ruleForm.jobTitle "></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="外语水平" prop="foreignLanguageLevel ">
-              <el-input size="large" v-model="ruleForm.foreignLanguageLevel "></el-input>
+              <el-input  v-model="ruleForm.foreignLanguageLevel "></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="计算机水平" prop="computerSkillLevel">
-              <el-input size="large" v-model="ruleForm.computerSkillLevel"></el-input>
+              <el-input  v-model="ruleForm.computerSkillLevel"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="特长" prop="specialty">
-              <el-input size="large" v-model="ruleForm.specialty"></el-input>
+              <el-input  v-model="ruleForm.specialty"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -213,18 +213,18 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="面试部门" prop="interviewDepartment">
-              <el-input size="large" v-model="ruleForm.interviewDepartment"></el-input>
+              <el-input  v-model="ruleForm.interviewDepartment"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="面试岗位" prop="interviewJob">
-              <el-input size="large" v-model="ruleForm.interviewJob"></el-input>
+              <el-input  v-model="ruleForm.interviewJob"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="报到时间" prop="dateWork ">
               <el-date-picker
-                  size="large"
+
                   v-model="ruleForm.dateWork "
                   type="date"
                   placeholder="选择报到时间"
@@ -872,22 +872,22 @@ const getImg = () => {
 }
 
 .left, .right {
-  min-width: 740px;
+  min-width: 540px;
   padding: 10px 0 0 0;
 
   .title {
-    margin: 40px 0;
+    margin: 10px 0;
     display: flex;
     align-items: center;
 
     > div {
-      font-size: 35px;
+      font-size: 25px;
       font-weight: bolder;
       display: flex;
       justify-content: center;
 
       img {
-        width: 220px;
+        width: 180px;
       }
     }
 
@@ -947,7 +947,31 @@ const getImg = () => {
 .left {
   width: 35%;
   border-right: 1px solid #ccc;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    // 滚动条的背景
+    width: 16px;
+    background: #fff;
+    height: 14px;
+  }
 
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    width: 20px;
+    border: 5px solid transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    //滚动条的滑块样式修改
+    width: 20px;
+    min-height: 20px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px #cee5ee inset;
+  }
+  &::-webkit-scrollbar-corner {
+    background: #fff;
+  }
   .photo {
     width: 120px;
     height: 170px;
@@ -956,7 +980,7 @@ const getImg = () => {
   }
 }
 
-:deep(.el-form-item__label) {
-  font-size: 16px !important;
-}
+//:deep(.el-form-item__label) {
+//  font-size: 16px !important;
+//}
 </style>
