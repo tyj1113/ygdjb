@@ -1,14 +1,22 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') // 去掉注释
 const isProduction = process.env.NODE_ENV === 'production';
 const CompressionWebpackPlugin = require('compression-webpack-plugin'); // 开启压缩
-
+const AutoImport = require('unplugin-auto-import/webpack')
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = {
     publicPath: './',
     //去除生产环境的productionSourceMap
     productionSourceMap: false,
+
     configureWebpack: config => {
         const plugins = [];
-        // 入口文件
+        plugins.push(AutoImport({
+            resolvers: [ElementPlusResolver()],
+        }))
+        plugins.push(Components({
+            resolvers: [ElementPlusResolver()],
+        }))
         if (isProduction) {
             plugins.push(
                 new UglifyJsPlugin({
@@ -25,6 +33,7 @@ module.exports = {
                     }
                 })
             );
+            // 服务器也要相应开启gzip
             plugins.push(
                 new CompressionWebpackPlugin({
                     algorithm: 'gzip',
@@ -34,6 +43,7 @@ module.exports = {
                     minRatio: 0.8 // 压缩比
                 })
             )
+
             config.optimization = {
                 runtimeChunk: 'single',
                 splitChunks: {
