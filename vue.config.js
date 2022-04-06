@@ -15,6 +15,7 @@ module.exports = {
             resolvers: [ElementPlusResolver()],
         }))
         plugins.push(Components({
+            dirs: ['src/components'],
             resolvers: [ElementPlusResolver()],
         }))
         if (isProduction) {

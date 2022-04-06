@@ -442,7 +442,7 @@
         <div class="btns">
           <el-button size="small" @click="submit(formRef)">保存</el-button>
           <el-button size="small">取消</el-button>
-          <el-button size="small">复制链接</el-button>
+          <el-button size="small" @click="show">复制链接</el-button>
         </div>
 
         <span style="margin-bottom: 30px;">到底了~</span>
@@ -450,12 +450,19 @@
     </div>
 
   </el-form>
+  <test2/>
 </template>
 
 <script setup>
-import {reactive, ref} from 'vue'
+import {reactive, ref, inject} from 'vue'
 import {ElMessage} from 'element-plus'
 import axios from 'axios'
+
+const emitter=inject('mitt')
+const show=()=>{
+  console.log(11111111111111111111);
+  emitter.emit('show',true)
+}
 
 const defaultId = {
   id: 0,
